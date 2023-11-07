@@ -57,5 +57,5 @@ To get started with the AirBnB Clone Project, follow these steps:
 
 ## *Authors*
 
-  
+   * Imane Zenasni
    * Mouad El Atmani
