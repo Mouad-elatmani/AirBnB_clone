@@ -38,6 +38,8 @@ class FileStorage:
                 for key, value in json.load(file).items():
                     if "BaseModel" in key:
                         self.__objects[key] = BaseModel(**value)
+                    elif "User" in key:
+                        self.__objects[key] = User(**value)
 
         except FileNotFoundError:
             pass
