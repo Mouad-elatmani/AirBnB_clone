@@ -22,8 +22,26 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_show(self, line):
-        """Print str representation of an instance based on cls name & id"""
-        pass
+        """Prints the string representation of an instance based \
+                on the class name and id
+        """
+        if line:
+            liste = line.split()
+            if len(liste) == 0:
+                print("** class name missing **")
+            elif liste[0] not in globals():
+                print("** class doesn't exist **")
+            elif len(liste) == 1:
+                print("** instance id missing **")
+            else:
+                dict_temp = models.storage.all()
+                key = f"{liste[0]}.{liste[1]}"
+                if key in dict_temp:
+                    print(dict_temp[key])
+                else:
+                    print("** no instance found **")
+        else:
+            print("** class name missing **")
 
     def do_quit(self, arg):
         """Quit command to exit the program
