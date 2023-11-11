@@ -2,6 +2,7 @@
 """Console Module"""
 import cmd
 from models.base_model import *
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
