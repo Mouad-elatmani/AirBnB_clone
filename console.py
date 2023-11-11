@@ -132,9 +132,6 @@ class HBNBCommand(cmd.Cmd):
 
             storage.save()
 
-            print(f"{attribute_name}: {getattr(data, attribute_name)}")
-            print(type(value))
-
     def check(self, value):
         """method that check type of the value """
         if '"' or "'" in value:
