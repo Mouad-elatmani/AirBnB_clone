@@ -28,7 +28,7 @@ class BaseModel:
             self.updated_at = datetime.now()
             models.storage.new(self)
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         String representation
         """
@@ -42,7 +42,7 @@ class BaseModel:
 
         models.storage.save()
 
-    def to_dict(self):
+    def to_dict(self) -> dict:
         """
         Returns a dictionary containing all keys/values
         """
