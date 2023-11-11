@@ -87,6 +87,7 @@ class HBNBCommand(cmd.Cmd):
                 print(liste)
         else:
             print(liste)
+
     def do_update(self, line):
         """ update an item """
         if not line:

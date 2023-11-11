@@ -42,10 +42,10 @@ class FileStorage:
                         self.__objects[key] = BaseModel(**value)
                     elif "User" in key:
                         self.__objects[key] = User(**value)"""
-                    cl_nm =  value.get('__class__')
+                    cl_nm = value.get('__class__')
                     if cl_nm:
                         obj = eval(cl_nm + '(**value)')
                         FileStorage.__objects[key] = obj
-                    
+
         except FileNotFoundError:
             pass
