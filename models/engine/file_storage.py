@@ -4,6 +4,7 @@
 
 import json
 from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage:
@@ -35,11 +36,12 @@ class FileStorage:
         """deserializes the JSON file to __objects """
         try:
             with open(self.__file_path, "r", encoding='utf-8') as file:
-                for key, value in json.load(file).items():
+                new_dict = json.load(file)
+                for key, value in new_dict.items():
                     if "BaseModel" in key:
                         self.__objects[key] = BaseModel(**value)
                     elif "User" in key:
                         self.__objects[key] = User(**value)
-
+                    
         except FileNotFoundError:
             pass
