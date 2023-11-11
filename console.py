@@ -3,6 +3,7 @@
 import cmd
 from models.base_model import *
 from models.user import User
+from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -86,6 +87,66 @@ class HBNBCommand(cmd.Cmd):
                 print(liste)
         else:
             print(liste)
+    def do_update(self, line):
+        """ update an item """
+        if not line:
+            print("** class name missing **")
+            return
+        clss = line.split()[0]
+        try:
+            clss = globals()[clss]
+        except KeyError:
+            print("** class doesn't exist **")
+            return
+
+        if len(line.split()) < 2 or not line.split()[1]:
+            print("** instance id missing **")
+            return
+
+        instance_id = line.split()[1]
+        key = f"{clss.__name__}.{instance_id}"
+        data = storage.all().get(key)
+
+        if data is None:
+            print("** no instance found **")
+            return
+
+        if len(line.split()) < 3 or not line.split()[2]:
+            print("** attribute name missing **")
+            return
+        else:
+            attribute_name = line.split()[2]
+
+        if len(line.split()) < 4 or not line.split()[3]:
+            print("** value missing **")
+            return
+        else:
+            attribute_value = line.split()[3]
+
+        if (attribute_name != "created_at" and
+                attribute_name != "updated_at" and attribute_name != "id"):
+
+            value = self.check(attribute_value)
+            setattr(data, attribute_name, value)
+
+            storage.save()
+
+            print(f"{attribute_name}: {getattr(data, attribute_name)}")
+            print(type(value))
+
+    def check(self, value):
+        """method that check type of the value """
+        if '"' or "'" in value:
+            Value = str(value)
+        elif value.isdigit():
+            Value = int(value)
+        else:
+            try:
+                Value = float(value)
+            except ValueError:
+                Value = str(value)
+
+            return Value
 
     def do_EOF(self, arg):
         """ Exit the program """
