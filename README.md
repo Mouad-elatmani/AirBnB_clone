@@ -25,7 +25,7 @@ To get started with the AirBnB Clone Project, follow these steps:
 
 1. Clone this repository to your local machine:
 
-   git clone 
+   git clone
 
 2. Navigate to the project directory:
 
@@ -36,7 +36,7 @@ To get started with the AirBnB Clone Project, follow these steps:
    ./console.py
 
 ## *Usage*
-   
+
    Here are some basic command examples:
 
    * Create a new object:
@@ -49,7 +49,7 @@ To get started with the AirBnB Clone Project, follow these steps:
 
    * Update an object's attributes:
 
-      (hbnb) update User 1234 
+      (hbnb) update User 1234
 
    * Delete an object:
 
