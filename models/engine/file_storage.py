@@ -38,10 +38,14 @@ class FileStorage:
             with open(self.__file_path, "r", encoding='utf-8') as file:
                 new_dict = json.load(file)
                 for key, value in new_dict.items():
-                    if "BaseModel" in key:
+                    """if "BaseModel" in key:
                         self.__objects[key] = BaseModel(**value)
                     elif "User" in key:
-                        self.__objects[key] = User(**value)
+                        self.__objects[key] = User(**value)"""
+                    cl_nm =  value.get('__class__')
+                    if cl_nm:
+                        obj = eval(cl_nm + '(**value)')
+                        FileStorage.__objects[key] = obj
                     
         except FileNotFoundError:
             pass
