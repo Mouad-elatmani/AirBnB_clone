@@ -31,6 +31,21 @@ class HBNBCommand(cmd.Cmd):
 
         return True
 
+    def do_all(self, line):
+        """Printsallstring representationofallinstancesbased on/nor class name
+        """
+        liste = []
+        dic_temp = models.storage.all()
+        for i in dic_temp.values():
+            liste.append(str(i))
+        if line:
+            if line not in globals():
+                print("** class doesn't exist **")
+            else:
+                print(liste)
+        else:
+            print(liste)
+
     def do_EOF(self, arg):
         """ Exit the program """
         print()
