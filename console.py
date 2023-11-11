@@ -12,15 +12,18 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, line):
         """ Create an item """
         if not line:
-            print("Class name missing")
+            print("** class name missing **")
             return
 
         clss = line.split()[0]
-        if clss in globals():
-            var = globals()[clss]
-            print(var)
-        else:
+        try:
+            clss = globals()[clss]
+            new_instance = clss()
+            new_instance.save()
+            print(new_instance.id)
+        except KeyError:
             print("** class doesn't exist **")
+            return
 
     def do_show(self, line):
         """Prints the string representation of an instance based \
