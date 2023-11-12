@@ -23,6 +23,13 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(testBase.created_at, datetime)
         self.assertIsInstance(testBase.updated_at, datetime)
 
+    def test_datetime_model(self):
+        """testing datetime base model"""
+        model_3 = BaseModel()
+        model_4 = BaseModel()
+        self.assertNotEqual(model_3.created_at, model_3.updated_at)
+        self.assertNotEqual(model_3.created_at, model_4.created_at)
+
 
 if __name__ == "__main__":
     unittest.main()
