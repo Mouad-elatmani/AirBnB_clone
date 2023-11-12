@@ -132,11 +132,12 @@ class HBNBCommand(cmd.Cmd):
 
             storage.save()
 
+            print(f"{attribute_name}: {getattr(data, attribute_name)}")
+            print(type(value))
+
     def check(self, value):
         """method that check type of the value """
-        if '"' or "'" in value:
-            Value = str(value)
-        elif value.isdigit():
+        if value.isdigit():
             Value = int(value)
         else:
             try:
@@ -144,7 +145,7 @@ class HBNBCommand(cmd.Cmd):
             except ValueError:
                 Value = str(value)
 
-            return Value
+        return Value
 
     def do_EOF(self, arg):
         """ Exit the program """
