@@ -17,6 +17,12 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(hasattr(testBase, "created_at"))
         self.assertTrue(hasattr(testBase, "updated_at"))
 
+    def test_type(self):
+        testBase = BaseModel()
+        self.assertIsInstance(testBase.id, str)
+        self.assertIsInstance(testBase.created_at, datetime)
+        self.assertIsInstance(testBase.updated_at, datetime)
+
 
 if __name__ == "__main__":
     unittest.main()
