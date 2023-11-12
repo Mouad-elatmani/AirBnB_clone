@@ -1,18 +1,22 @@
 #!/usr/bin/python3
-""" test_base_model """
+"""testing the class BasseModel"""
+
+import unittest
 from models.base_model import BaseModel
+from datetime import datetime
+
+
+class TestBaseModel(unittest.TestCase):
+    """
+    testing and cheking the type and existing of attributes
+    """
+
+    def test_existing(self):
+        testBase = BaseModel()
+        self.assertTrue(hasattr(testBase, "id"))
+        self.assertTrue(hasattr(testBase, "created_at"))
+        self.assertTrue(hasattr(testBase, "updated_at"))
+
 
 if __name__ == "__main__":
-
-    my_model = BaseModel()
-    my_model.name = "My First Model"
-    my_model.my_number = 89
-    print(my_model)
-    my_model.save()
-    print(my_model)
-    my_model_json = my_model.to_dict()
-    print(my_model_json)
-    print("JSON of my_model:")
-    for key in my_model_json.keys():
-        print("\t{}: ({}) - {}\
-        ".format(key, type(my_model_json[key]), my_model_json[key]))
+    unittest.main()
