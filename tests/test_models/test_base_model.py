@@ -30,6 +30,12 @@ class TestBaseModel(unittest.TestCase):
         self.assertNotEqual(model_3.created_at, model_3.updated_at)
         self.assertNotEqual(model_3.created_at, model_4.created_at)
 
+    def test_uuid(self):
+        """testing differents uuid"""
+        model = BaseModel()
+        model_2 = BaseModel()
+        self.assertNotEqual(model.id, model_2.id)
+
 
 if __name__ == "__main__":
     unittest.main()
