@@ -5,6 +5,7 @@ import unittest
 from models.city import City
 from datetime import datetime
 
+
 class TestCity(unittest.TestCase):
     """
     testing and cheking the type and existing of attributes
@@ -17,6 +18,7 @@ class TestCity(unittest.TestCase):
         self.assertTrue(hasattr(testCity, "state_id"))
         self.assertTrue(hasattr(testCity, "created_at"))
         self.assertTrue(hasattr(testCity, "updated_at"))
+
 
 if __name__ == "__main__":
     unittest.main()

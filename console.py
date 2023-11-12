@@ -4,15 +4,16 @@ import cmd
 from models.base_model import *
 from models.user import User
 from models import storage
-from models.city import City
-from models.state import State
-from models.amenity import Amenity
-from models.review import Review
-from models.place import Place
+
 
 class HBNBCommand(cmd.Cmd):
     """The command interpreter class for the AirBnB clone project"""
     prompt = "(hbnb) "
+
+    def default(self, line):
+        """Handle default """
+        if line == "User.all()":
+            self.do_all("User")
 
     def do_create(self, line):
         """ Create an item """
@@ -78,19 +79,23 @@ class HBNBCommand(cmd.Cmd):
             print('** class name missing **')
 
     def do_all(self, line):
-        """Printsallstring representationofallinstancesbased on/nor class name
-        """
-        liste = []
-        dic_temp = models.storage.all()
-        for i in dic_temp.values():
-            liste.append(str(i))
+        """display all the instances"""
         if line:
-            if line not in globals():
+            clss = line.split()[0]
+            try:
+                clss = globals()[clss]
+            except KeyError:
                 print("** class doesn't exist **")
-            else:
-                print(liste)
+                return
         else:
-            print(liste)
+            clss = None
+
+        data = []
+
+        for obj in storage.all().values():
+            if clss is None or isinstance(obj, clss):
+                data.append(obj.__str__())
+        print(data)
 
     def do_update(self, line):
         """ update an item """
