@@ -16,12 +16,19 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
     def default(self, line):
-        """Handle default """
+        """Handle default commands."""
+        clss = line.split(".")[0]
+        try:
+            clss = globals()[clss]
+        except KeyError:
+            print("** class doesn't exist **")
+            return
 
-        if line == "User.all()":
-            self.do_all("User")
-        if line == "User.count()":
-            self.do_count("User")
+        if line == f"{clss.__name__}.all()":
+            self.do_all(f"{clss.__name__}")
+
+        if line == f"{clss.__name__}.count()":
+            self.do_count(f"{clss.__name__}")
 
     def do_count(self, line):
         """Count the number of instances of a class"""
