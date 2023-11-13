@@ -17,6 +17,7 @@ class HBNBCommand(cmd.Cmd):
 
     def default(self, line):
         """Handle default """
+
         if line == "User.all()":
             self.do_all("User")
         if line == "User.count()":
