@@ -146,9 +146,6 @@ class HBNBCommand(cmd.Cmd):
 
             storage.save()
 
-            print(f"{attribute_name}: {getattr(data, attribute_name)}")
-            print(type(value))
-
     def check(self, value):
         """method that check type of the value """
         if value.isdigit():
@@ -157,7 +154,7 @@ class HBNBCommand(cmd.Cmd):
             try:
                 Value = float(value)
             except ValueError:
-                Value = str(value)
+                Value = str(value).strip().replace('"', '').replace("'", '')
 
         return Value
 
