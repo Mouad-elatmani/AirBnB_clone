@@ -19,6 +19,8 @@ class HBNBCommand(cmd.Cmd):
         """Handle default """
         if line == "User.all()":
             self.do_all("User")
+        if line == "User.count()":
+            self.do_count("User")
 
     def do_count(self, line):
         """Count the number of instances of a class"""
