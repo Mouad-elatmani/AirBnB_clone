@@ -20,6 +20,18 @@ class HBNBCommand(cmd.Cmd):
         if line == "User.all()":
             self.do_all("User")
 
+    def do_count(self, line):
+        """Count the number of instances of a class"""
+
+        if line:
+            clss = line.split(".")[0]
+            clss = globals()[clss]
+        c = 0
+        for obj in storage.all().values():
+            if clss is not None and isinstance(obj, clss):
+                c += 1
+        print(c)
+
     def do_create(self, line):
         """ Create an item """
         if not line:
